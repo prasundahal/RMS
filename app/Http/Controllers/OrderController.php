@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\order;
-use App\iteam;
+use App\Order;
+use App\Iteam;
 class OrderController extends Controller
 {
     /**

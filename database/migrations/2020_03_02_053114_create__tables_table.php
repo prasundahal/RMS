@@ -15,10 +15,9 @@ class CreateTablesTable extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->string('table_number');
             $table->string('table_capicity');
-
+            $table->timestamps();
         });
     }
 
