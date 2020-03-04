@@ -18,13 +18,12 @@
     <thead>
         <tr>
           <td>ID</td>
+
           <td>order Name</td>
           <td>order Image</td>
           <td>order Price</td>
-          <td>order Discription</td>
-          <td>order Time </td>
-          <td>order Type </td>
-          <td>order Discount </td>
+          <td>Table Number</td>
+
 
 
           <td colspan = 2>Actions</td>
@@ -36,10 +35,8 @@
             <td>{{$order->id}}</td>
             <td>{{$order->order_name}} </td>
             <td>{{$order->order_price}}</td>
-            <td>{{$order->order_discription}}</td>
-            <td>{{$order->order_type}}</td>
-            <td>{{$order->order_time}}</td>
-            <td>{{$order->order_discount}}</td>
+            <td>{{$order->table_number}}</td>
+
             <td>
                 <a href="{{ route('orders.edit',$order->id)}}" class="btn btn-primary">Edit</a>
             </td>

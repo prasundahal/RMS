@@ -21,7 +21,10 @@ class CreateTablesTable extends Migration
 
         });
     }
-
+    public function Order()
+    {
+        return $this->hasOne('App\Order','table_number');
+    }
     /**
      * Reverse the migrations.
      *
