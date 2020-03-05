@@ -13,7 +13,7 @@ class CreateIteamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('iteams', function (Blueprint $table) {
+        Schema::create($tableNames['iteams'], function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string ('iteam_name');
@@ -21,6 +21,12 @@ class CreateIteamsTable extends Migration
             $table->string ('iteam_discription');
             $table->string ('iteam_type');
             $table->string ('iteam_time');
+        });
+
+        Schema::create($tableNames['category'], function (Blueprint $table) use ($tableNames) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->string('category_name');
         });
     }
 
