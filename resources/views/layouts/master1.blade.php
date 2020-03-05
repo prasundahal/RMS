@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Ketali Chiya</title>
+  <title>Ketali Chiya for </title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/css/app.css">
@@ -152,7 +152,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Kitchen Iteams
+                Kitchen Iteams FOR
                 <span class=""></span>
               </p>
             </a>
@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboaed</li>
+              <li class="breadcrumb-item active">Dashboaed </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

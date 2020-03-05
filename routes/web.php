@@ -26,4 +26,6 @@ Route::resource('iteams', 'IteamController');
 Route::resource('tables', 'TableController');
 
 Route::resource('tableorders', 'TableorderController');
+//Route::get('tableorders/{id}', 'TableorderController@create')->name('tableorders.create');
 
+?>

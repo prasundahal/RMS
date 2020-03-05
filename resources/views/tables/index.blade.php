@@ -1,6 +1,4 @@
-
 @extends('layouts.master')
-
 @section('main')
 <div class="container">
 <div class="row">
@@ -30,7 +28,11 @@
               <td>{{$table->id}}</td>
               <td>{{$table->table_number}} </td>
               <td>{{$table->table_capicity}}</td>
-              <td>
+
+                <td>
+                    <a href="{{ route('tableorders.edit',$table->id)}}" class="btn btn-primary">book table</a>
+                </td>
+                <td>
                   <form action="{{ route('tables.destroy', $table->id)}}" method="post">
                     @csrf
                     @method('DELETE')

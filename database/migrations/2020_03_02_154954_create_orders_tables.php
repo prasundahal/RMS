@@ -16,18 +16,14 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string ('table_number');
+
             $table->string ('order_name');
             $table->string ('order_image');
             $table->string ('order_price');
 
-
         });
     }
-    public function table()
-    {
-        return $this->belongsTo('App\table', 'table_number');
-    }
+
     /**
      * Reverse the migrations.
      *
@@ -36,5 +32,5 @@ class CreateOrdersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('orders');
-    }
+   }
 }

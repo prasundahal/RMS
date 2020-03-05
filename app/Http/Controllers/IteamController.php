@@ -43,8 +43,11 @@ class IteamController extends Controller
         'iteam_discription'=>'required',
         'iteam_type'=>'required',
         'iteam_time'=>'required',
-        ]);
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
+        ]);
+        $imageName = rand().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
         $iteam = new Iteam([
 
             'iteam_name'=>$request->get('iteam_name'),
@@ -52,8 +55,13 @@ class IteamController extends Controller
             'iteam_discription'=>$request->get('iteam_discription'),
             'iteam_type'=>$request->get('iteam_type'),
             'iteam_time'=>$request->get('iteam_time'),
+            //'image'=>$request->get('imageName')
+
 
         ]);
+
+
+
         $iteam->save();
         return redirect('/iteams')->with('success', 'iteam saved!');
     }
