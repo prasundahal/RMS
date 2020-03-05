@@ -1,8 +1,9 @@
 @extends('layouts.master')
 @section('main')
-<div class="row">
- <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Add a Iteam</h1>
+<div class="container">
+<h1>Add an Item</h1>
+  <div class="row">
+  <div class="col-sm-8 offset-sm-2">
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -11,52 +12,42 @@
               <li>{{ $error }}</li>
             @endforeach
         </ul>
-      </div><br />
+      </div>
     @endif
       <form method="post" action="{{ route('iteams.store') }}">
           @csrf
-          <div class="form-group">
-              <label for="iteam_id">Iteam ID:</label>
-              <input type="text" class="form-control" name="iteam_id"/>
-          </div>
-
-          <div class="form-group">
-            <label for="iteam_name">Iteam Name:</label>
+        <div class="form-group">
+            <label for="iteam_name">Item Name:</label>
             <input type="text" class="form-control" name="iteam_name"/>
         </div>
 
         <div class="form-group">
-            <label for="iteam_price">Iteam Price:</label>
+            <label for="iteam_price">Item Price:</label>
             <input type="text" class="form-control" name="iteam_price"/>
         </div>
 
         <div class="form-group">
-            <label for="iteam_discription">Iteam Discription:</label>
+            <label for="iteam_discription">Item Description:</label>
             <input type="text" class="form-control" name="iteam_discription"/>
         </div>
 
         <div class="form-group">
-            <label for="iteam_type">Iteam Type:</label>
+            <label for="iteam_type">Item Type:</label>
             <input type="text" class="form-control" name="iteam_type"/>
         </div>
 
         <div class="form-group">
-            <label for="iteam_time">Iteam Time to Prepaird:</label>
+            <label for="iteam_time">Time to Prepare Item:</label>
             <input type="text" class="form-control" name="iteam_time"/>
         </div>
         <div class="form-group">
-            <label for="iteam_discount">Discount: </label>
-            <input type="text" class="form-control" name="iteam_discount"/>
+            <label for="iteam_time">Image:</label>
+            <input type="file" class="form-control" name="image"/>
         </div>
-        <div class="form-group">
-            <label for="iteam_image">Image: </label>
-            <input type="text" class="form-control" name="iteam_image"/>
-        </div>
-
-
-          <button type="submit" class="btn btn-primary-outline">Add Iteam</button>
+        <button type="submit" class="btn btn-primary">Add Item</button>
       </form>
   </div>
+</div>
 </div>
 </div>
 @endsection

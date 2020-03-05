@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\iteam;
+use App\Iteam;
 class IteamController extends Controller
 {
     /**
@@ -38,31 +38,30 @@ class IteamController extends Controller
     {
     $request->validate([
 
-        'iteam_id'=>'required',
         'iteam_name'=>'required',
-        'iteam_image'=>'required',
         'iteam_price'=>'required',
         'iteam_discription'=>'required',
         'iteam_type'=>'required',
         'iteam_time'=>'required',
-        'iteam_discount'=>'required'
-        ]);
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
+        ]);
+        $imageName = rand().'.'.$request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
         $iteam = new Iteam([
 
-            'iteam_id'=>$request->get('iteam_id'),
             'iteam_name'=>$request->get('iteam_name'),
-            'iteam_image'=>$request->get('iteam_image'),
             'iteam_price'=>$request->get('iteam_price'),
             'iteam_discription'=>$request->get('iteam_discription'),
             'iteam_type'=>$request->get('iteam_type'),
             'iteam_time'=>$request->get('iteam_time'),
-            'iteam_discount'=>$request->get('iteam_discount')
-
-
+            //'image'=>$request->get('imageName')
 
 
         ]);
+
+
+
         $iteam->save();
         return redirect('/iteams')->with('success', 'iteam saved!');
     }
@@ -100,26 +99,18 @@ class IteamController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-        'iteam_id'=>'required',
         'iteam_name'=>'required',
-        'iteam_image'=>'required',
         'iteam_price'=>'required',
         'iteam_discription'=>'required',
-        'iteam_type'=>'required',
         'iteam_time'=>'required',
-        'iteam_discount'=>'required'
         ]);
 
         $iteam = Iteam::find($id);
 
-     $iteam->iteam_id = $request->get('iteam_id');
      $iteam->iteam_name = $request->get('iteam_name');
-     $iteam->iteam_image = $request->get('iteam_image');
      $iteam->iteam_price = $request->get('iteam_price');
      $iteam->iteam_discription = $request->get('iteam_discription');
-     $iteam->iteam_type = $request->get('iteam_type');
      $iteam->iteam_time = $request->get('iteam_time');
-     $iteam->iteam_discount = $request->get('iteam_discount');
      $iteam->save();
 
      return redirect('/iteams')->with('sucess','Iteam Updated!');

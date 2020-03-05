@@ -1,4 +1,4 @@
-@extends('layouts.master1')
+@extends('layouts.app')
 
 
 @section('content1')
@@ -7,7 +7,7 @@
     </div>
 <div class="row">
 <div class="col-sm-12">
-@include('tableorders.index')
+
 
 
 </div></div>

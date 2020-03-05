@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Iteam extends Model
 {
     protected $fillable = [
-
-        'iteam_id',
+        'id',
         'iteam_name',
-        'iteam_image',
         'iteam_price',
         'iteam_discription',
         'iteam_type',
         'iteam_time',
-        'iteam_discount'
-
+        'image'
     ];
 }

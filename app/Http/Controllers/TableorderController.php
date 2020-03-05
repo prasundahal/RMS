@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\table;
-use App\tableorder;
-use App\order;
+use App\Table;
+use App\Tableorder;
+use App\Order;
 class TableorderController extends Controller
 {
     /**
@@ -25,12 +25,10 @@ class TableorderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
 
 
-
-        return view('tableorders.create');
     }
 
     /**
@@ -63,7 +61,8 @@ class TableorderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $table = table::find($id);
+        return view('tableorders.edit', compact('table'));
     }
 
     /**

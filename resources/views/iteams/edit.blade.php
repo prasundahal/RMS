@@ -18,52 +18,35 @@
             @method('PATCH')
             @csrf
             <div class="form-group">
-
-                <label for="iteam_name">Iteam Name:</label>
-                <input type="text" class="form-control" name="iteam_name" value={{ $iteam->Iteam_name }} />
+                <label for="iteam_name">Item Name:</label>
+                <input type="text" class="form-control" name="iteam_name"/>
             </div>
 
             <div class="form-group">
-
-                <label for="iteam_name">Image:</label>
-                <input type="text" class="form-control" name="iteam_image" value={{ $iteam->iteam_image }} />
-            </div>
-            <div class="form-group">
-
-                <label for="iteam_name">Price:</label>
-                <input type="text" class="form-control" name="iteam_price" value={{ $iteam->iteam_price }} />
-            </div>
-            <div class="form-group">
-
-                <label for="iteam_name">Price:</label>
-                <input type="text" class="form-control" name="iteam_price" value={{ $iteam->iteam_price }} />
-            </div>
-            <div class="form-group">
-
-                <label for="iteam_name">Price:</label>
-                <input type="text" class="form-control" name="iteam_price" value={{ $iteam->iteam_price }} />
+                <label for="iteam_price">Item Price:</label>
+                <input type="text" class="form-control" name="iteam_price"/>
             </div>
 
             <div class="form-group">
-
-                <label for="iteam_name">Price:</label>
-                <input type="text" class="form-control" name="iteam_price" value={{ $iteam->iteam_price }} />
+                <label for="iteam_discription">Item Description:</label>
+                <input type="text" class="form-control" name="iteam_discription"/>
             </div>
 
+            <div class="form-group">
+                <label for="iteam_type">Item Type:</label>
+                <input type="text" class="form-control" name="iteam_type"/>
+            </div>
 
-
-
-
-
-
+            <div class="form-group">
+                <label for="iteam_time">Time to Prepare Item:</label>
+                <input type="text" class="form-control" name="iteam_time"/>
+            </div>
+            <div class="form-group">
+                <label for="iteam_time">Image:</label>
+                <input type="file" class="form-control" name="image"/>
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
 </div>
 @endsection
-'iteam_id'=>'required',
-        'iteam_name'=>'required',
-        'iteam_image'=>'required',
-        'iteam_price'=>'required',
-        'iteam_time'=>'required',
-        'iteam_discount'=>'required'
