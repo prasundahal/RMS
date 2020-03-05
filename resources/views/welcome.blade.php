@@ -7,8 +7,6 @@
     </div>
 <div class="row">
 <div class="col-sm-12">
-@include('tableorders.index')
-
 
 </div></div>
 

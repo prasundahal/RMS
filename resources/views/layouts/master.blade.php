@@ -54,12 +54,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item has-treeview menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('tables.index')}}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Tables</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="{{ route('tables.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Tables</p>
@@ -72,15 +66,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Items
-                <span class=""></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Kitchen Iteams
                 <span class=""></span>
               </p>
             </a>
@@ -133,15 +118,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.content-wrapper -->
 </div>
   <!-- Main Footer -->
-  <footer class="main-footer">
+</div>
+<footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
       RMS
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020 <a href=""></a>.</strong> All rights reserved.
-  </footer>
-</div>
+</footer>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
