@@ -1,18 +1,8 @@
-@extends('layouts.master1')
+@extends('layouts.app')
 
-
-@section('content1')
-<div>
-    <a style="margin: 19px;" href="{{ route('orders.create')}}" class="btn btn-primary">New Order</a>
-    </div>
-<div class="row">
-<div class="col-sm-12">
-
-
-
-</div></div>
-
-
+@section('content')
+<h1 className="jumbotron">Welcome to Ketali</h1>
 
 @endsection
+
 

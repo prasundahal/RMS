@@ -11,9 +11,13 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('dashboard', 'DashboardController');
 
 Auth::routes();
 
@@ -26,4 +30,10 @@ Route::resource('iteams', 'IteamController');
 Route::resource('tables', 'TableController');
 
 Route::resource('tableorders', 'TableorderController');
+
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
+});
 
