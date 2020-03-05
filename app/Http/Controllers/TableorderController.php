@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\table;
-use App\tableorder;
-use App\order;
+use App\Table;
+use App\Tableorder;
+use App\Order;
 class TableorderController extends Controller
 {
     /**

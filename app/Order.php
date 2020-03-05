@@ -5,7 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
-{protected $fillable = [
+{
+    protected $fillable = [
         'table_number',
         'order_name',
         'order_image',
