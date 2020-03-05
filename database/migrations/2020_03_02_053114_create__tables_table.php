@@ -20,7 +20,10 @@ class CreateTablesTable extends Migration
             $table->timestamps();
         });
     }
-
+    public function Order()
+    {
+        return $this->hasmany('App\Order','table_number');
+    }
     /**
      * Reverse the migrations.
      *
