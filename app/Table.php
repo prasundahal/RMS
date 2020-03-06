@@ -12,4 +12,14 @@ class Table extends Model
         'table_capicity'
 
     ];
+
+    public function tableorder()
+
+    {
+
+        return $this->hasOne('App\Tableorder');
+
+    }
+
+
 }

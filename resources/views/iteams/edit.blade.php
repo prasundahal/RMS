@@ -21,24 +21,32 @@
             @csrf
             <div class="form-group">
                 <label for="iteam_name">Item Name:</label>
-                <input type="text" class="form-control" name="iteam_name" value="{{ $iteam->iteam_name }}" />
+                <input type="text" class="form-control" name="iteam_name"/>
             </div>
 
             <div class="form-group">
-                <label for="iteam_name">Item Price:</label>
-                <input type="text" class="form-control" name="iteam_price" value="{{ $iteam->iteam_price }}" />
+                <label for="iteam_price">Item Price:</label>
+                <input type="text" class="form-control" name="iteam_price"/>
             </div>
 
             <div class="form-group">
-                <label for="iteam_name">Item Description:</label>
-                <input type="text" class="form-control" name="iteam_discription" value="{{ $iteam->iteam_discription }}" />
+                <label for="iteam_discription">Item Description:</label>
+                <input type="text" class="form-control" name="iteam_discription"/>
             </div>
 
             <div class="form-group">
-                <label for="iteam_name">Item Time:</label>
-                <input type="text" class="form-control" name="iteam_time" value="{{ $iteam->iteam_time }}" />
+                <label for="iteam_type">Item Type:</label>
+                <input type="text" class="form-control" name="iteam_type"/>
             </div>
 
+            <div class="form-group">
+                <label for="iteam_time">Time to Prepare Item:</label>
+                <input type="text" class="form-control" name="iteam_time"/>
+            </div>
+            <div class="form-group">
+                <label for="iteam_time">Image:</label>
+                <input type="file" class="form-control" name="image"/>
+            </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

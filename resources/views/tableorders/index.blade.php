@@ -1,10 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('main')
-<div>
-    <a style="margin:10px;" href="{{ route('tables.create')}}" class="btn btn-success">New Table</a>
+<div class="container">
+<div class="row">
+    <a style="margin:10px;" href="{{ route('tables.create')}}" class="btn btn-primary">New vTable</a>
 </div>
-<div class="container custom-form">
-
   <div class="row">
     <div class="col-sm-12">
       @if(session()->get('success'))
@@ -14,7 +13,7 @@
     @endif
     </div>
     <h1>Tables@Ketali</h1>
-    <table class="table table-bordered">
+    <table class="table table-striped">
       <thead>
           <tr>
             <td>ID</td>
@@ -31,10 +30,10 @@
               <td>{{$table->table_capicity}}</td>
 
                 <td>
-                    <a href="{{ route('tableorders.edit',$table->id)}}" class="btn btn-primary">book table</a>
+                    <a href="{{ route('tableorders.create',$table->id)}}" class="btn btn-primary">book table</a>
                 </td>
                 <td>
-                  <form action="{{ route('tables.destroy', $table->id)}}" method="post">
+                  <form action="{{ route('tableorders.destroy', $table->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Delete</button>
@@ -46,4 +45,6 @@
     </table>
   </div>
 </div>
-@endsection
+
+
+
