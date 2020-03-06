@@ -13,5 +13,6 @@ class Iteam extends Model
         'iteam_discription',
         'iteam_type',
         'iteam_time',
+        'image'
     ];
 }

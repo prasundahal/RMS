@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-
-@section('content')
+@section('main')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">

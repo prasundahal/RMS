@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @section('main')
 <div class="container">
 <h1>Add an Item</h1>
@@ -42,6 +43,10 @@
         <div class="form-group">
             <label for="iteam_time">Time to Prepare Item:</label>
             <input type="text" class="form-control" name="iteam_time"/>
+        </div>
+        <div class="form-group">
+            <label for="iteam_time">Image:</label>
+            <input type="file" class="form-control" name="image"/>
         </div>
         <button type="submit" class="btn btn-primary">Add Item</button>
       </form>

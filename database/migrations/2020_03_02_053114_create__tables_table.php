@@ -18,12 +18,10 @@ class CreateTablesTable extends Migration
             $table->string('table_number');
             $table->string('table_capicity');
             $table->timestamps();
+
         });
     }
-    public function Order()
-    {
-        return $this->hasmany('App\Order','table_number');
-    }
+
     /**
      * Reverse the migrations.
      *
@@ -31,6 +29,6 @@ class CreateTablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_tables');
+        Schema::dropIfExists('tables');
     }
 }
