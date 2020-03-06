@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-    public function front()
-    {
-        return view('front');
+        if(Auth::user()->roles->pluck('id')[0] == 1)
+        {
+            return view('layouts.userroles.admin');
+        }
+
+        if(Auth::user()->roles->pluck('id')[0] == 2)
+        {
+            return view('layouts.userroles.waiter');
+            
+        }
     }
 }

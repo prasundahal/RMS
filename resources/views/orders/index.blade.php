@@ -2,8 +2,9 @@
 
 @section('main')
 <div>
-    <a style="margin: 19px;" href="{{ route('orders.create')}}" class="btn btn-primary">New Orders</a>
-    </div>
+    <a style="margin: 10px;" href="{{ route('orders.create')}}" class="btn btn-success">New Orders</a>
+</div>
+<div class="container custom-form">
 <div class="row">
 <div class="col-sm-12">
 
@@ -13,8 +14,8 @@
   </div>
 @endif
 </div>
-    <h1 class="display-3">Orders</h1>
-  <table class="table table-striped">
+    <h1>Orders</h1>
+  <table class="table table-bordered">
     <thead>
         <tr>
           <td>ID</td>

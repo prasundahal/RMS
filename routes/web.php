@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+
+Route::get('/waiter', 'WaiterController@index')->name('waiter')->middleware('waiter');
 
 Route::resource('orders', 'OrderController');
 
@@ -26,6 +28,10 @@ Route::resource('iteams', 'IteamController');
 Route::resource('tables', 'TableController');
 
 Route::resource('tableorders', 'TableorderController');
-//Route::get('tableorders/{id}', 'TableorderController@create')->name('tableorders.create');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
+});
 
 ?>

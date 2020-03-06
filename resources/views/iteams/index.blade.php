@@ -2,25 +2,22 @@
 
 @section('main')
 <div>
-  <a 
-    style="margin: 10px;" 
-    href="{{ route('iteams.create')}}" 
-    class="btn btn-primary"
-  >
-    Add Item
-  </a>
-</div>
-<div class="container custom-form">
   <div class="row">
-  <div class="col-sm-12">
-    @if(session()->get('success'))
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-right" style="margin:10px;">
+            <a class="btn btn-success" href="{{ route('iteams.create')}}"> Create Items</a>
+        </div>
+    </div>
+</div>
+</div>
+@if(session()->get('success'))
     <div class="alert alert-success">
       {{ session()->get('success') }}
     </div>
-  @endif
-  </div>
-    <h1 class="display-3">Items</h1>
-    <table class="table table-striped">
+@endif
+<div class="container custom-form">
+<h1 class="pull-left">Items</h1>
+    <table class="table table-bordered">
       <thead>
           <tr>
             <td>ID</td>
