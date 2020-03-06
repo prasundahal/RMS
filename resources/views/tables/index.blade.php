@@ -1,9 +1,10 @@
 @extends('layouts.master')
 @section('main')
-<div class="container">
-<div class="row">
-    <a style="margin:10px;" href="{{ route('tables.create')}}" class="btn btn-primary">New Table</a>
+<div>
+    <a style="margin:10px;" href="{{ route('tables.create')}}" class="btn btn-success">New Table</a>
 </div>
+<div class="container custom-form">
+
   <div class="row">
     <div class="col-sm-12">
       @if(session()->get('success'))
@@ -13,7 +14,7 @@
     @endif
     </div>
     <h1>Tables@Ketali</h1>
-    <table class="table table-striped">
+    <table class="table table-bordered">
       <thead>
           <tr>
             <td>ID</td>

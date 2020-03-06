@@ -13,9 +13,10 @@ class IteamController extends Controller
      */
     public function index()
     {
-        $iteams = Iteam::all();
+        $iteams = iteam::all();
 
         return view('iteams.index', compact('iteams'));
+
     }
 
     /**
@@ -43,27 +44,32 @@ class IteamController extends Controller
         'iteam_discription'=>'required',
         'iteam_type'=>'required',
         'iteam_time'=>'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-
-        ]);
-        $imageName = rand().'.'.$request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
-        $iteam = new Iteam([
-
-            'iteam_name'=>$request->get('iteam_name'),
-            'iteam_price'=>$request->get('iteam_price'),
-            'iteam_discription'=>$request->get('iteam_discription'),
-            'iteam_type'=>$request->get('iteam_type'),
-            'iteam_time'=>$request->get('iteam_time'),
-            //'image'=>$request->get('imageName')
-
+        'image'         =>  'required'
 
         ]);
 
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $new_name);
+
+            $form_data = array(
+
+            'iteam_name'=>$request->iteam_name,
+            'iteam_price'=>$request->iteam_price,
+            'image'=> $new_name,
+            'iteam_discription'=>$request->iteam_discription,
+            'iteam_type'=>$request->iteam_type,
+            'iteam_time'=>$request->iteam_time
 
 
-        $iteam->save();
-        return redirect('/iteams')->with('success', 'iteam saved!');
+        );
+
+
+        Iteam::create($form_data);
+
+        return redirect('/iteams')->with('success', 'Data Added successfully.');
+
     }
 
     /**
@@ -74,7 +80,8 @@ class IteamController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Iteam::findOrFail($id);
+        return view('iteams.view', compact('data'));
     }
 
     /**
@@ -85,8 +92,8 @@ class IteamController extends Controller
      */
     public function edit($id)
     {
-        $iteam = Iteam::find($id);
-        return view('iteams.edit', compact('iteam'));
+        $data = Iteam::findOrFail($id);
+        return view('iteams.edit', compact('data'));
     }
 
     /**
@@ -129,4 +136,7 @@ class IteamController extends Controller
 
         return redirect('/iteams')->with('success', 'Iteam Deleted sucess!');
     }
+
+
+
 }

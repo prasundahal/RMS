@@ -14,7 +14,8 @@
         </div>
         <br />
         @endif
-        <form method="post" action="{{ route('tableorders.update', $table->id) }}">
+        <form method="post" action="{{ route('tableorders.update', $table->id) }}"enctype="multipart/form-data">
+
             @method('PATCH')
             @csrf
             <div class="form-group">
@@ -28,14 +29,31 @@
                 <label for="table_name">Table Capicity:</label>
                 <input type="text" class="form-control" name="table_capicity" value={{ $table->table_capicity }} />
             </div>
-            <div class="form-group">
 
-                <label for="table_name">ORDERS:</label>
-                <input type="text" class="form-control" name="table_capicity" value={{ $table->tableorders_order }} />
-            </div>
+
+            <select class="form-control" name="product_id">
 
 
 
+                <option>Select Catogary</option>
+
+
+
+                @foreach ($iteams as $key => $value)
+
+                  <option value="{{ $key }}" {{ ( $key == $selectedID) ? 'selected' : '' }}>
+
+                      {{ $value }}
+
+                  </option>
+
+                @endforeach
+
+              </select>
+
+
+
+        </br></br>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
-use App\Iteam;
 class OrderController extends Controller
 {
     /**
@@ -14,9 +13,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = order::all();
-
-        return view('orders.index', compact('orders'));
+        $data = Order::latest()->paginate(5);
+        return view('orders.index', compact('data'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -37,29 +36,25 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-    $request->validate([
+        $request->validate([
+            'order_name'    =>  'required',
 
-        'table_number'=>'required',
-        'order_name'=>'required',
-        'order_image'=>'required',
-        'order_price'=>'required'
-
+            'image'         =>  'required|image|max:2048'
         ]);
 
-        $order = new order([
+        $image = $request->file('image');
+        dd($image);
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $new_name);
+        $form_data = array(
+            'order_name'       =>   $request->order_name,
 
-            'table_number'=>$request->get('table_number'),
-            'order_name'=>$request->get('order_name'),
-            'order_image'=>$request->get('order_image'),
-            'order_price'=>$request->get('order_price')
+            'image'            =>   $new_name
+        );
 
+        Order::create($form_data);
 
-
-
-
-        ]);
-        $order->save();
-        return redirect('/orders')->with('success', 'order saved!');
+        return redirect('order')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -70,7 +65,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Order::findOrFail($id);
+        return view('view', compact('data'));
     }
 
     /**
@@ -81,8 +77,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $order = order::find($id);
-        return view('orders.edit', compact('order'));
+        $data = Order::findOrFail($id);
+        return view('edit', compact('data'));
     }
 
     /**
@@ -94,24 +90,36 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-        'table_number'=>'required',
-        'order_name'=>'required',
-        'order_image'=>'required',
-        'order_price'=>'required',
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
+        if($image != '')
+        {
+            $request->validate([
+                'order_name'    =>  'required',
 
-        ]);
+                'image'         =>  'image|max:2048'
+            ]);
 
-        $order = order::find($id);
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+        }
+        else
+        {
+            $request->validate([
+                'order_name'    =>  'required'
 
-     $order->table_number = $request->get('table_number');
-     $order->order_name = $request->get('order_name');
-     $order->order_image = $request->get('order_image');
-     $order->order_price = $request->get('order_price');
+            ]);
+        }
 
-     $order->save();
+        $form_data = array(
+            'order_name'       =>   $request->order_name,
 
-     return redirect('/orders')->with('sucess','order Updated!');
+            'image'            =>   $image_name
+        );
+
+        Order::whereId($id)->update($form_data);
+
+        return redirect('order')->with('success', 'Data is successfully updated');
     }
 
     /**
@@ -122,9 +130,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $order = order::find($id);
-        $order->delete();
+        $data = Order::findOrFail($id);
+        $data->delete();
 
-        return redirect('/orders')->with('success', 'order Deleted sucess!');
+        return redirect('order')->with('success', 'Data is successfully deleted');
     }
 }

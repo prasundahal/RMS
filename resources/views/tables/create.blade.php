@@ -2,6 +2,9 @@
 @section('main')
 <div class="container">
 <h1>Add a table</h1>
+<div class="pull-right">
+            <a class="btn btn-primary" href="{{ route('tables.index') }}"> Back</a>
+    </div>
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
       <div>

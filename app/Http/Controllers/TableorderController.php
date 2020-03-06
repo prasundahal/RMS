@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Table;
 use App\Tableorder;
 use App\Order;
+use App\Iteam;
+
 class TableorderController extends Controller
 {
     /**
@@ -59,10 +61,15 @@ class TableorderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+
+
+         $iteams = Iteam::pluck('image', 'id');
+
+         $selectedID = 2;
         $table = table::find($id);
-        return view('tableorders.edit', compact('table'));
+        return view('tableorders.edit', compact('table','iteams','selectedID'));
     }
 
     /**
@@ -87,4 +94,18 @@ class TableorderController extends Controller
     {
         //
     }
+    public function consentFormListShowPDF(Request $request)
+
+{
+
+   $iteams = Iteam::pluck('image', 'id');
+
+   $selectedID = 2;
+
+
+   $table = table::find($id);
+   return view('tableorder.edit', compact('table', 'iteams'));
+
+}
+
 }

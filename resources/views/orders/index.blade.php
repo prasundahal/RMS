@@ -1,56 +1,29 @@
-@extends('layouts.master')
 
-@section('main')
-<div>
-    <a style="margin: 19px;" href="{{ route('orders.create')}}" class="btn btn-primary">New Orders</a>
-    </div>
-<div class="row">
-<div class="col-sm-12">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laravel 5.8 Crud Tutorial</title>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<table class="table table-bordered table-striped">
+ <tr>
+  <th width="10%">Image</th>
+  <th width="35%">Order Name</th>
 
-  @if(session()->get('success'))
-  <div class="alert alert-success">
-    {{ session()->get('success') }}
-  </div>
-@endif
-</div>
-    <h1 class="display-3">Orders</h1>
-  <table class="table table-striped">
-    <thead>
-        <tr>
-          <td>ID</td>
+  <th width="30%">Action</th>
+ </tr>
+ @foreach($data as $row)
+  <tr>
+   <td><img src="{{ URL::to('/') }}/images/{{ $row->image }}" class="img-thumbnail" width="75" /></td>
+   <td>{{ $row->order_name }}</td>
 
-          <td>order Name</td>
-          <td>order Image</td>
-          <td>order Price</td>
-          <td>Table Number</td>
+   <td>
 
 
 
-          <td colspan = 2>Actions</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($orders as $order)
-        <tr>
-            <td>{{$order->id}}</td>
-            <td>{{$order->order_name}} </td>
-            <td>{{$order->order_price}}</td>
-            <td>{{$order->table_number}}</td>
+   </td>
+  </tr>
+ @endforeach
+</table>
+{!! $data->links() !!}
 
-            <td>
-                <a href="{{ route('orders.edit',$order->id)}}" class="btn btn-primary">Edit</a>
-            </td>
-            <td>
-                <form action="{{ route('orders.destroy', $order->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-  </table>
-<div>
-</div>
-@endsection

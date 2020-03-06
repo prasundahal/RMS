@@ -22,7 +22,15 @@ class CreateTableordersTable extends Migration
             $table->string ('iteam_price');
 
         });
+
     }
+
+
+    public function iteams()
+        {
+            return $this->hasMany('App\iteam','table_number');
+        }
+
 
     /**
      * Reverse the migrations.
