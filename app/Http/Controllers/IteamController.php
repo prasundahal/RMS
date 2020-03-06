@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Iteam;
 class IteamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +47,7 @@ class IteamController extends Controller
         'iteam_discription'=>'required',
         'iteam_type'=>'required',
         'iteam_time'=>'required',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
         $imageName = rand().'.'.$request->image->extension();

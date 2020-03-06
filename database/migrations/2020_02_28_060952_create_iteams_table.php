@@ -21,9 +21,9 @@ class CreateIteamsTable extends Migration
             $table->string ('iteam_discription');
             $table->string ('iteam_type');
             $table->string ('iteam_time');
-            $table->string ('image');
         });
     }
+    
 
     /**
      * Reverse the migrations.

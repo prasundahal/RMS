@@ -16,10 +16,7 @@
     </div>
 @endif
 <div class="container custom-form">
-  <div class="row">
-  <div class="col-sm-12">
-  </div>
-    <h1 class="pull-left">Items</h1>
+<h1 class="pull-left">Items</h1>
     <table class="table table-bordered">
       <thead>
           <tr>

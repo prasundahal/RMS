@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @section('main')
 <div class="container">
 <h1>Add an Item</h1>

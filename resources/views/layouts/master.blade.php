@@ -8,8 +8,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>Ketali Chiya</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Ketali Chiya') }}</title>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <!-- Styles -->
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/css/app.css">
@@ -23,7 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <!-- <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -32,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </button>
         </div>
       </div>
-    </form>
+    </form> -->
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -43,25 +49,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="" alt="" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Ketali Chiya</span>
+      
+      <div><p style="font-size:10px;">{{ Auth::user()->name }}</p></div>
+        
+
     </a>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item has-treeview menu-open">
             <ul class="nav nav-treeview">
+          @if (Auth::user()->roles->pluck('id')[0] == 1)
+           
               <li class="nav-item">
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <a href="{{ route('tables.index')}}" class="nav-link">
 =======
                 <a href="{{ route('tables.index')}}" class="nav-link active">
+=======
+                <a href="{{ route('tables.index')}}" class="nav-link">
+                <a href="{{ route('tables.index')}}" class="nav-link">
+>>>>>>> 972221cf8ecf73cbe4540b6ad90953495cbcd60a
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Tables</p>
                 </a>
               </li>
+<<<<<<< HEAD
               <li class="nav-item">
                 <a href="{{ route('tableorders.index')}}" class="nav-link">
 >>>>>>> 01d604c1903812411534efdd227795d6ba9989c7
@@ -69,13 +87,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>View Tables</p>
                 </a>
               </li>
+=======
+>>>>>>> 972221cf8ecf73cbe4540b6ad90953495cbcd60a
             </ul>
           </li>
           <li class="nav-item">
             <a href="{{ route('iteams.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Items
+                Add Menu Items
                 <span class=""></span>
               </p>
             </a>
@@ -84,20 +104,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="{{ route('users.index') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Show Users
+                Manage Users
                 <span class=""></span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('orders.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Orders
-              </p>
-            </a>
+            <a class="nav-link" href="{{ route('roles.index') }}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>Manage Roles</p></a>
           </li>
+          @endif
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+            <i class="nav-icon fas fa-th"></i>
 
+                  {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+          </div>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -1,15 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-
-@section('content')
+@section('main')
 <div class="row">
     <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Role Management</h2>
-        </div>
         <div class="pull-right">
         @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
+            <a class="btn btn-success" style="margin:10px;" href="{{ route('roles.create') }}"> Create New Role</a>
             @endcan
         </div>
     </div>
@@ -22,7 +18,10 @@
     </div>
 @endif
 
-
+<div class="container custom-form">
+<h1 class="pull-left">
+ Roles Management
+</h1>
 <table class="table table-bordered">
   <tr>
      <th>No</th>
@@ -47,6 +46,7 @@
     </tr>
     @endforeach
 </table>
+</div>
 
 
 {!! $roles->render() !!}
