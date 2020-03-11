@@ -80,10 +80,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('iteams.index')}}" class="nav-link">
+            <a href="{{ route('categorys.index')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Orders
+                Category
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('kitchens.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Kitchen
               </p>
             </a>
           </li>

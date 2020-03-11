@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,20 +26,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('orders', 'OrderController');
 
 Route::resource('iteams', 'IteamController');
-
+Route::resource('categorys','CategoryController');
 Route::resource('tables', 'TableController');
-
+Route::resource('kitchens', 'kitchenController');
 
 Route::resource('tableorders', 'TableorderController');
 //Route::get('tableorders/{id}', 'TableorderController@create')->name('tableorders.create');
-
-Route::resource('order','OrderController');
-
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles','RoleController');
+Route::resource('roles','RoleController');
     Route::resource('users','UserController');
 
-});
+
+//Route::group(['middleware' => ['auth']], function() {
+
+
+
+//});
 ?>
 
 

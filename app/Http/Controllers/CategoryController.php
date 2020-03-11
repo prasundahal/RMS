@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Table;
-use App\Tableorder;
-use App\Order;
-use App\Iteam;
-
-class TableorderController extends Controller
+use App\Category;
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +13,8 @@ class TableorderController extends Controller
      */
     public function index()
     {
-        $tables = table::all();
-
-        return view('tableorders.index', compact('tables'));
+          $categorys = category::all();
+          return view('categorys.index', compact('categorys'));
     }
 
     /**
@@ -27,11 +22,10 @@ class TableorderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
+
     {
-
-
-
+        return view('categorys.create');
     }
 
     /**
@@ -42,7 +36,32 @@ class TableorderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'category_name'=>'required',
+            'image'         =>  'required'
+
+            ]);
+
+            $image = $request->file('image');
+
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $new_name);
+
+                $form_data = array(
+
+                'category_name'=>$request->category_name,
+
+                'image'=> $new_name,
+
+
+
+            );
+
+
+            category::create($form_data);
+
+            return redirect('/categorys')->with('success', 'Data Added successfully.');
     }
 
     /**
@@ -53,7 +72,8 @@ class TableorderController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = category::findOrFail($id);
+        return view('categorys.view', compact('data'));
     }
 
     /**
@@ -62,12 +82,10 @@ class TableorderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $iteams = Iteam::pluck('iteam_name', 'id');
-        $selectedID = 2;
-        $table = table::find($id);
-        return view('tableorders.edit', compact('table','iteams','selectedID'));
+        $data = category::findOrFail($id);
+        return view('categorys.edit', compact('data'));
     }
 
     /**
@@ -79,32 +97,7 @@ class TableorderController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
-
-
-        $request->validate([
-
-            'table_number'=>'required',
-            'iteam_name'=>'required',
-            'iteam_price'=>'required'
-
-
-            ]);
-
-         $table = table::find($id);
-
-
-         $arrayTostring = implode(',', $request->input('iteam_name'));
-         $table->iteam_name = $request->get('$arrayTostring');
-         $table->table_number = $request->get('table_number');
-
-         $table->iteam_price = $request->get('iteam_price');
-         $table->save();
-
-
-         return redirect('/tables')->with('sucess','table Updated!');
-
+       //
     }
 
     /**
@@ -115,6 +108,9 @@ class TableorderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = category::find($id);
+        $category->delete();
+
+        return redirect('/categorys')->with('success', 'category Deleted sucess!');
     }
 }

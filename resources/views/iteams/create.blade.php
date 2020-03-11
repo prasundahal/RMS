@@ -38,9 +38,42 @@
         </div>
 
         <div class="form-group">
-            <label for="iteam_type">Item Type:</label>
-            <input type="text" class="form-control" name="iteam_type"/>
+
+        <select class="form-control" name="iteam_category">
+            <option>Select Category</option>
+                @foreach ($categorys as $key => $value)
+
+                  <option value="{{ $key }}" {{ ( $key == $selectedID) ? 'selected' : '' }}>
+
+                      {{ $value }}
+
+                  </option>
+
+                @endforeach
+
+              </select>
+
+
+
+
+          </select>
+
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="form-group">
             <label for="iteam_time">Time to Prepare Item:</label>

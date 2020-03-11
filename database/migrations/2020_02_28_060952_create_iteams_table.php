@@ -20,7 +20,7 @@ class CreateIteamsTable extends Migration
             $table->string ('iteam_price');
             $table->string('image');
             $table->string ('iteam_discription');
-            $table->string ('iteam_type');
+            $table->string ('iteam_category');
             $table->string ('iteam_time');
 
 
