@@ -10,9 +10,15 @@ class Iteam extends Model
         'id',
         'iteam_name',
         'iteam_price',
+        'image',
         'iteam_discription',
-        'iteam_type',
-        'iteam_time',
-        'image'
+        'iteam_category',
+        'iteam_time'
+
     ];
+
+    public function category()
+    {
+        return $this->hasone(Category::Class);
+    }
 }

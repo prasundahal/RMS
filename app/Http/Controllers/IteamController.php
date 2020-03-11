@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Iteam;
+use App\Table;
+use App\Tableorder;
+use App\Order;
+use App\Category;
+
 class IteamController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +18,10 @@ class IteamController extends Controller
      */
     public function index()
     {
-        $iteams = Iteam::all();
+        $iteams = iteam::all();
 
         return view('iteams.index', compact('iteams'));
+
     }
 
     /**
@@ -27,9 +29,12 @@ class IteamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('iteams.create');
+
+        $categorys = Category::pluck('category_name', 'category_name');
+        $selectedID = 2;
+        return view('iteams.create', compact('categorys','selectedID'));
     }
 
     /**
@@ -45,29 +50,34 @@ class IteamController extends Controller
         'iteam_name'=>'required',
         'iteam_price'=>'required',
         'iteam_discription'=>'required',
-        'iteam_type'=>'required',
+        'iteam_category'=>'required',
         'iteam_time'=>'required',
-        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-
-        ]);
-        $imageName = rand().'.'.$request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
-        $iteam = new Iteam([
-
-            'iteam_name'=>$request->get('iteam_name'),
-            'iteam_price'=>$request->get('iteam_price'),
-            'iteam_discription'=>$request->get('iteam_discription'),
-            'iteam_type'=>$request->get('iteam_type'),
-            'iteam_time'=>$request->get('iteam_time'),
-            //'image'=>$request->get('imageName')
-
+        'image'         =>  'required'
 
         ]);
 
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $new_name);
+
+            $form_data = array(
+
+            'iteam_name'=>$request->iteam_name,
+            'iteam_price'=>$request->iteam_price,
+            'image'=> $new_name,
+            'iteam_discription'=>$request->iteam_discription,
+            'iteam_category'=>$request->iteam_category,
+            'iteam_time'=>$request->iteam_time
 
 
-        $iteam->save();
-        return redirect('/iteams')->with('success', 'iteam saved!');
+        );
+
+
+        Iteam::create($form_data);
+
+        return redirect('/iteams')->with('success', 'Data Added successfully.');
+
     }
 
     /**
@@ -78,7 +88,8 @@ class IteamController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Iteam::findOrFail($id);
+        return view('iteams.view', compact('data'));
     }
 
     /**
@@ -89,8 +100,15 @@ class IteamController extends Controller
      */
     public function edit($id)
     {
-        $iteam = Iteam::find($id);
-        return view('iteams.edit', compact('iteam'));
+
+        $categorys = Category::pluck('category_name', 'id');
+        $selectedID = 2;
+        return view('iteams.create', compact('categorys','selectedID'));
+
+
+
+
+
     }
 
     /**
@@ -106,12 +124,15 @@ class IteamController extends Controller
         'iteam_name'=>'required',
         'iteam_price'=>'required',
         'iteam_discription'=>'required',
-        'iteam_time'=>'required',
+        'iteam_category'=>'required',
+        'iteam_time'=>'required'
         ]);
 
         $iteam = Iteam::find($id);
 
      $iteam->iteam_name = $request->get('iteam_name');
+     $iteam->iteam_category = $request->get('iteam_category');
+
      $iteam->iteam_price = $request->get('iteam_price');
      $iteam->iteam_discription = $request->get('iteam_discription');
      $iteam->iteam_time = $request->get('iteam_time');
@@ -133,4 +154,10 @@ class IteamController extends Controller
 
         return redirect('/iteams')->with('success', 'Iteam Deleted sucess!');
     }
+
+
+
+
+
+
 }

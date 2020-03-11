@@ -22,6 +22,8 @@ Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin'
 Route::get('/waiter', 'WaiterController@index')->name('waiter')->middleware('waiter');
 
 Route::resource('orders', 'OrderController');
+Route::resource('categorys','CategoryController');
+Route::resource('kitchens', 'kitchenController');
 
 Route::resource('iteams', 'IteamController');
 

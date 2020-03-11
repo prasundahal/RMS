@@ -1,10 +1,7 @@
 @extends('layouts.master')
 
 @section('main')
-<div>
-    <a style="margin: 10px;" href="{{ route('orders.create')}}" class="btn btn-success">New Orders</a>
-</div>
-<div class="container custom-form">
+<div class="container">
 <div class="row">
 <div class="col-sm-12">
 
@@ -14,20 +11,14 @@
   </div>
 @endif
 </div>
-    <h1>Orders</h1>
-  <table class="table table-bordered">
+    <h1 class="display-3">Orders</h1>
+  <table class="table table-striped">
     <thead>
         <tr>
           <td>ID</td>
-
-          <td>order Name</td>
-          <td>order Image</td>
-          <td>order Price</td>
           <td>Table Number</td>
-
-
-
-          <td colspan = 2>Actions</td>
+          <td>Items</td>
+          <td>Price</td>
         </tr>
     </thead>
     <tbody>
@@ -36,18 +27,9 @@
             <td>{{$order->id}}</td>
             <td>{{$order->order_name}} </td>
             <td>{{$order->order_price}}</td>
-            <td>{{$order->table_number}}</td>
-
-            <td>
-                <a href="{{ route('orders.edit',$order->id)}}" class="btn btn-primary">Edit</a>
-            </td>
-            <td>
-                <form action="{{ route('orders.destroy', $order->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-            </td>
+            <td>{{$order->order_type}}</td>
+            <td>{{$order->order_time}}</td>
+            <td>{{$order->order_discount}}</td>
         </tr>
         @endforeach
     </tbody>

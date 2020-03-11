@@ -18,12 +18,16 @@ class CreateIteamsTable extends Migration
             $table->timestamps();
             $table->string ('iteam_name');
             $table->string ('iteam_price');
+            $table->string('image');
             $table->string ('iteam_discription');
-            $table->string ('iteam_type');
+            $table->string ('iteam_category');
             $table->string ('iteam_time');
+
+
         });
+
+
     }
-    
 
     /**
      * Reverse the migrations.

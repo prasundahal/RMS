@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-     
+
   </nav>
   <!-- /.navbar -->
 
@@ -53,9 +53,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <img src="" alt="" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Ketali Chiya</span>
-      
+
       <div><p style="font-size:10px;">{{ Auth::user()->name }}</p></div>
-        
+
 
     </a>
       <!-- Sidebar Menu -->
@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item has-treeview menu-open">
             <ul class="nav nav-treeview">
           @if (Auth::user()->roles->pluck('id')[0] == 1)
-           
+
               <li class="nav-item">
                 <a href="{{ route('tables.index')}}" class="nav-link">
                 <a href="{{ route('tables.index')}}" class="nav-link">
@@ -73,6 +73,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('categorys.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Category
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('iteams.index')}}" class="nav-link">
@@ -92,10 +101,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ route('roles.index') }}">
             <i class="nav-icon fas fa-th"></i>
             <p>Manage Roles</p></a>
+          </li>
+          @endif
+          @if (Auth::user()->roles->pluck('id')[0] == 2)
+
+          <li class="nav-item">
+            <a href="{{ route('tables.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                table book
+              </p>
+            </a>
           </li>
           @endif
           <li class="nav-item">
@@ -140,7 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-            @yield('main')  
+            @yield('main')
         </div>
           <!-- /.col-md-6 -->
       </div><!-- /.container-fluid -->
